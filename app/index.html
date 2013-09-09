@@ -26,15 +26,16 @@
         <!--Body content-->
 
         <ul class="phones">
-          <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
-          {{phone.name}}
+          <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" ng-init="show=true">
+          <span ng-click="edit(this)" ng-show='show'>{{phone.name}}</span><input type="text" ng-model="phone.name" ng-hide="show" ng-keypress="sub()"/><button ng-click="removePhone(phone)">remove</button>
           <p>{{phone.snippet}}</p>
           </li>
         </ul>
 
       </div>
     </div>
-  </div>
 
+  <div><input type="text" ng-keypress="gogogo()"/></div>
+  </div>
 </body>
 </html>
