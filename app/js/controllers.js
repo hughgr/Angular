@@ -1,4 +1,6 @@
-var phoneListController = function($scope, $http, $timeout){
+var app = angular.module('app',[]);
+
+app.controller('phoneListController',function phoneListControl($scope, $http, $timeout){
     $http({method:'GET',url:'phones/phones.json'}).success(function(data){
         $scope.phones = data;
     });
@@ -52,5 +54,5 @@ var phoneListController = function($scope, $http, $timeout){
         }
     }
 
-}
-phoneListController.$inject = ['$scope','$http','$timeout'];
+});
+//phoneListController.$inject = ['$scope','$http','$timeout'];
