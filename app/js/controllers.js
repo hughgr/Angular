@@ -18,22 +18,29 @@ var phoneListController = function($scope, $http, $timeout){
     $scope.removePhone = function(phone){
         console.log(JSON.stringify(phone));
         $scope.phones.splice($scope.phones.indexOf(phone),1);
-    }
-    
+    };
     $scope.edit = function(){
         console.log(this)
         console.log($scope)
         this.show = !this.show;
-    }
-    $scope.sub = function(){
-        alert(1)
-        if(e.keycode == 13){
-           this.show = !this.show;
+    };
+    $scope.sub = function(e,phone){
+        var self = this;
+        if(e.keyCode == 13){
+            var url = 'opration.json?phoneid='+phone.id;
+            $timeout(function(){
+                    $http.get(url).success(function(data){
+                            console.log(data.status)
+                            if(data.status == 'success'){
+                                self.show = !self.show;
+                            }
+                     }).
+                    error(function(){
+                            alert('error')
+                     })
+            },200)
         }
-    }
-    $scope.gogogo = function(){
-        alert(111)
     }
 
 }
-//phoneListController.$inject = ['$scope','$http'];
+phoneListController.$inject = ['$scope','$http','$timeout'];

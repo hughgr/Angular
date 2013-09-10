@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="css/bootstrap.css">
   <script src="lib/angular/angular.js"></script>
   <script src="js/controllers.js"></script>
+  <style>
+    a {
+        cursor: pointer;
+    }
+  </style>
 </head>
 <body> 
 
@@ -27,7 +32,7 @@
 
         <ul class="phones">
           <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" ng-init="show=true">
-          <span ng-click="edit(this)" ng-show='show'>{{phone.name}}</span><input type="text" ng-model="phone.name" ng-hide="show" ng-keypress="sub()"/><button ng-click="removePhone(phone)">remove</button>
+          <span ng-click="edit(this)" ng-show='show'><a>{{phone.name}}</a></span><input type="text" ng-model="phone.name" ng-hide="show" ng-keypress="sub($event,phone)"/><button ng-click="removePhone(phone)">remove</button>
           <p>{{phone.snippet}}</p>
           </li>
         </ul>
@@ -35,7 +40,6 @@
       </div>
     </div>
 
-  <div><input type="text" ng-keypress="gogogo()"/></div>
   </div>
 </body>
 </html>
