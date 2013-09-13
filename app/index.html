@@ -5,7 +5,9 @@
   <title>Google Phone Gallery</title>
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="js/jquery.js"></script>
   <script src="lib/angular/angular.js"></script>
+  <script src="js/ng-infinite-scroll.js"></script>
   <script src="js/controllers.js"></script>
   <style>
     a {
@@ -30,9 +32,9 @@
       <div class="span10">
         <!--Body content-->
 
-        <ul class="phones">
+        <ul class="phones" infinite-scroll="loadMore()"  infinite-scroll-distance='0'>
           <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" ng-init="show=true">
-          <span ng-click="edit(this)" ng-show='show'><a>{{phone.name}}</a></span><input type="text" ng-model="phone.name" ng-hide="show" ng-keypress="sub($event,phone)"/><button ng-click="removePhone(phone)">remove</button>
+          <span ng-click="edit(this)" ng-show='show'><a>{{phone.name}}</a></span><input type="text" ng-model="phone.name" ng-hide="show" ng-keypress="sub($event,phone)"/><button ng-click="removePhone(phone,1)">remove</button>
           <p>{{phone.snippet}}</p>
           </li>
         </ul>
