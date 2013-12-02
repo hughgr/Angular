@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" ng-app="app">
 <head>
-  <meta charset="utf-8">
+  <meta charset="GBK">
   <title>Google Phone Gallery</title>
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="css/bootstrap.css">
@@ -22,6 +22,7 @@
       <div class="span2">
         <!--Sidebar content-->
         Search: <input ng-model="query">
+        Search2: <input ng-model="query2">
         Sort by:
         <select ng-model="orderProp">
           <option value="name">Alphabetical</option>
@@ -33,8 +34,8 @@
         <!--Body content-->
 
         <ul class="phones" infinite-scroll="loadMore()"  infinite-scroll-distance='0'>
-          <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" ng-init="show=true">
-          <span ng-click="edit(this)" ng-show='show'><a>{{phone.name}}</a></span><input type="text" ng-model="phone.name" ng-hide="show" ng-keypress="sub($event,phone)"/><button ng-click="removePhone(phone,1)">remove</button>
+          <li ng-repeat="phone in phones | filter:query |filter:query2 | orderBy:orderProp" ng-init="show=true">
+          <span ng-click="edit(this)" ng-show='show'><a>{{phone.name | nameFilter}}</a></span><input type="text" ng-model="phone.name" ng-hide="show" ng-keypress="sub($event,phone)"/><button ng-click="removePhone(phone,1)">remove</button>
           <p>{{phone.snippet}}</p>
           </li>
         </ul>

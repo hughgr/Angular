@@ -1,4 +1,9 @@
-var app = angular.module('app',['infinite-scroll']);
+angular.module('phoneNameFilter',[]).filter('nameFilter',function(){
+    return function(name){
+        return name == 'LG Axis' ? 'THIS IS LG\u2713' : name;     
+    }
+})
+var app = angular.module('app',['infinite-scroll','phoneNameFilter']);
 
 app.controller('phoneListController',function phoneListControl($scope, $http, $timeout){
     var tmpList = {};
@@ -8,7 +13,6 @@ app.controller('phoneListController',function phoneListControl($scope, $http, $t
         tmpList = data;
         $scope.phones = data;
     });*/
-    
     var loadData = function(isFirst){
         isFirst ? isFirst=isFirst : isFirst=false;
         if(isFirst){
